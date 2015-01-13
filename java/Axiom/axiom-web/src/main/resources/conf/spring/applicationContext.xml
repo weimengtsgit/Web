@@ -26,8 +26,9 @@
 			<property name="locations">
 			<list>
 				<!-- 标准配置 -->
+				<value>classpath*:conf/jdbc.properties</value>
 				<value>classpath*:conf/application.properties</value>
-				<value>file:/var/erm/application.server.properties</value>
+				<!-- <value>file:/var/erm/application.server.properties</value> -->
 			</list>
 		</property>
 	</bean>
@@ -75,14 +76,22 @@
 	<!-- 定义aspectj -->
 	<aop:aspectj-autoproxy proxy-target-class="true"/>
 	
-	<!-- 数据源配置,使用应用内的DBCP数据库连接池 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-		<!-- Connection Info -->
-		<property name="driverClassName" value="${jdbc.driver}" />
+	<!-- 配置dataSource -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
+		destroy-method="close">
+		<property name="driverClassName" value="${jdbc.driverClassName}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
-		<property name="defaultAutoCommit" value="false" />
+		<property name="initialSize" value="${jdbc.initialSize}" />
+		<property name="maxActive" value="${jdbc.maxActive}" />
+		<property name="maxIdle" value="${jdbc.maxIdle}" />
+		<property name="minIdle" value="${jdbc.minIdle}" />
+		<property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}" />
+		<property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}" />
+		<property name="validationQuery" value="${jdbc.validationQuery}" />
+		<property name="testWhileIdle" value="${jdbc.testWhileIdle}" />
+		<property name="testOnBorrow" value="${jdbc.testOnBorrow}" />
 	</bean>
 	
 	<bean id="serverConfig" class="cn.com.axiom.system.service.ServerConfig">

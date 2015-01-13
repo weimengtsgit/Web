@@ -71,7 +71,7 @@
 
 	<bean
 		class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-		<!-- 解析器 -->
+		<!-- 配置视图解析 -->
 		<property name="viewResolvers">
 			<list>
 				<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"
