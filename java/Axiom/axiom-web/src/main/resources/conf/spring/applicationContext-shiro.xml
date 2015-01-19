@@ -12,9 +12,9 @@
 	</bean>
 	
 		<!-- 項目自定义的Realm -->
-	<bean id="shiroDbRealm" class="cn.com.supertv.system.security.ShiroDbRealm" depends-on="userDao,sysLogDao">
+	<bean id="shiroDbRealm" class="cn.com.axiom.system.security.ShiroDbRealm" depends-on="userDao"><!-- ,sysLogDao -->
 		<property name="userService" ref="userService"/>
-		<property name="sysLogService" ref="sysLogService"/>
+		<!--<property name="sysLogService" ref="sysLogService"/>-->
 	</bean>
 	<!-- Shiro Filter -->
 	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">

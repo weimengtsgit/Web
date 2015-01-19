@@ -9,7 +9,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 			classpath*:conf/spring/applicationContext.xml
-			<!-- classpath*:conf/spring/applicationContext-shiro.xml -->
+			classpath*:conf/spring/applicationContext-shiro.xml
 			<!-- classpath*:conf/spring/applicationContext-spring-scheduler.xml -->
 		</param-value>
 	</context-param>
@@ -69,7 +69,7 @@
 	</filter-mapping>
 	<!-- Open Entity Manager in View filter -->
 
-	<!-- Shiro Security filter 
+	<!-- Shiro Security filter -->
 	<filter>
 		<filter-name>shiroFilter</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
@@ -80,7 +80,7 @@
 		<dispatcher>REQUEST</dispatcher>
 		<dispatcher>FORWARD</dispatcher>
 	</filter-mapping>
--->
+
 
 	<!-- Cache Control Header filter -->
 	<filter>
