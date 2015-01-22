@@ -13,6 +13,9 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 public class SystemController {
 
+  /**
+   * shiro
+   */
   @RequestMapping(value = "/login.html", method = RequestMethod.GET)
   public String login() {
     Subject subject = SecurityUtils.getSubject();
@@ -21,19 +24,23 @@ public class SystemController {
     }
     return "system/login";
   }
-
+  
+  /**
+   * shiro
+   */
   @RequestMapping(value = "/login.html", method = RequestMethod.POST)
   public ModelAndView fail(
       @RequestParam(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM) String userName, Model model) {
-    
-    
     model.addAttribute(FormAuthenticationFilter.DEFAULT_USERNAME_PARAM, userName);
     return new ModelAndView("system/login");
   }
 
+  /**
+   * shiro
+   */
   @RequestMapping("/index.html")
   public ModelAndView home() {
-    return new ModelAndView("index");
+    return new ModelAndView("system/index");
   }
 
   @RequestMapping(value = "/system/index.html", method = RequestMethod.GET)

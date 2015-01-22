@@ -10,6 +10,9 @@ import org.apache.commons.codec.DecoderException;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.lang3.StringEscapeUtils;
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.util.SimpleByteSource;
 
 /**
  * 封装各种格式的编码解码工具类.
@@ -170,5 +173,15 @@ public class Encodes {
 		return "";
 	}
 	
+	public static void main(String[] args){
+	  String salt = (new sun.misc.BASE64Encoder()).encode("admin".getBytes());
+      System.out.println(salt);
+	  String passwordMd5 = Encodes.md5("123456", "YWRtaW4=");
+      System.out.println(passwordMd5);
+	  passwordMd5 = new Md5Hash("123456", "YWRtaW4=").toString();
+	  System.out.println(passwordMd5);
+	  SimpleByteSource saltS = (SimpleByteSource) ByteSource.Util.bytes("admin");
+      System.out.println(saltS);
+	}
 	
 }

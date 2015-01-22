@@ -27,9 +27,12 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.crypto.hash.Md5Hash;
+import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.apache.shiro.util.SimpleByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import cn.com.axiom.system.entity.User;
@@ -57,8 +60,10 @@ public class ShiroDbRealm extends AuthorizingRealm {
       }
       // sysLogService.log("用户登陆","用户登陆系统",user.getUserName(), SysLog.INFO,
       // token.getHost(),SysLog.USER);
+      SimpleByteSource salt = (SimpleByteSource) ByteSource.Util.bytes(user.getUserName());
+      String passwordMd5 = new Md5Hash(user.getPassword().getBytes(), salt).toString();
       return new SimpleAuthenticationInfo(new ShiroUser(user.getId(), user.getUserName(),
-          user.getRealName()), user.getPassword(), ByteSource.Util.bytes(user.getUserName()),
+          user.getRealName()), passwordMd5, ByteSource.Util.bytes(user.getUserName()),
           getName());
     } else {
       return null;
