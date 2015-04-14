@@ -1,5 +1,5 @@
 package cn.com.axiom.entity;
-
+//
 import java.io.Serializable;
 
 import javax.persistence.GeneratedValue;
